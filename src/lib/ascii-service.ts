@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import { Jimp, intToRGBA } from 'jimp';
 
 export interface AsciiOptions {
   width?: number;
@@ -11,13 +11,14 @@ const DEFAULT_CHARS = '@%#*+=-:. ';
 
 export async function validateImage(buffer: Buffer): Promise<boolean> {
   try {
-    const metadata = await sharp(buffer).metadata();
-    // Basic security: Check if sharp can parse it and if it's a known format
-    if (!metadata.format || !['jpeg', 'png', 'webp', 'gif'].includes(metadata.format)) {
+    const image = await Jimp.read(buffer);
+    const mime = image.mime;
+    // Basic security: Check if jimp can parse it and if it's a known format
+    if (!['image/jpeg', 'image/png', 'image/bmp', 'image/tiff', 'image/gif'].includes(mime || '')) {
       return false;
     }
     // Limit dimensions to prevent DOS
-    if ((metadata.width || 0) > 4000 || (metadata.height || 0) > 4000) {
+    if (image.bitmap.width > 4000 || image.bitmap.height > 4000) {
       return false;
     }
     return true;
@@ -33,26 +34,27 @@ export async function convertToAscii(buffer: Buffer, options: AsciiOptions = {})
     isTerminal = false,
   } = options;
 
-  const image = sharp(buffer);
-  const metadata = await image.metadata();
+  const image = await Jimp.read(buffer);
+  const metadata = {
+    width: image.bitmap.width,
+    height: image.bitmap.height
+  };
   const aspectRatio = (metadata.height || 1) / (metadata.width || 1);
   const height = Math.round(width * aspectRatio * 0.5); // 0.5 to adjust for font aspect ratio
 
-  const { data, info } = await image
-    .resize(width, height, { fit: 'fill' }) // 'fill' ensures the entire image is mapped to the box
-    .removeAlpha() // Standardize to RGB
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+  image.resize({ w: width, h: height });
 
   let result = '';
   const charArray = chars.split('');
 
-  for (let y = 0; y < info.height; y++) {
-    for (let x = 0; x < info.width; x++) {
-      const idx = (y * info.width + x) * 3;
-      const r = data[idx];
-      const g = data[idx + 1];
-      const b = data[idx + 2];
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const pixelColor = image.getPixelColor(x, y);
+      const rgba = intToRGBA(pixelColor);
+      
+      const r = rgba.r;
+      const g = rgba.g;
+      const b = rgba.b;
 
       // Luminance (standard ITU-R BT.709)
       const brightness = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
