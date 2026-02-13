@@ -56,6 +56,8 @@ You can use `curl` from any terminal on any operating system to instantly transf
 curl -sSL http://localhost:3000/api/convert | bash
 ```
 
+![Terminal Curl Demo](public/curl-demo.png)
+
 ### 💻 OS Guidance
 
 - **🍎 macOS**: Use the default **Terminal** app. It will open a native Finder picker.
