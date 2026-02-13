@@ -102,7 +102,7 @@ We maintain high code quality through linting and build validation.
 
 ## 🔒 Security
 
-- **Strict Validation**: Files are processed as buffers and parsed by `sharp`. Only standard image headers are accepted.
+- **Strict Validation**: Files are processed as buffers and parsed by `jimp`. Only standard image headers are accepted.
 - **DOS Protection**: Image dimensions are capped at 4000x4000 pixels.
 - **Size Limits**: API routes enforce a 5MB payload limit.
 
