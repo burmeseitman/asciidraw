@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --glow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glow-color: rgba(255, 255, 255, 0.3);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.8) 0%,
+    var(--background) 100%
+  );
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark body {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(30, 41, 59, 0.5) 0%,
+    var(--background) 100%
+  );
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+  border-radius: 1.25rem;
+}
+
+.dark .glass {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.ascii-container {
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1;
+  white-space: pre;
+  letter-spacing: 0;
+}
+
+.glow-text {
+  text-shadow: 0 0 15px var(--glow-color);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
