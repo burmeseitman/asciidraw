@@ -86,22 +86,19 @@ We maintain high code quality through linting and build validation.
   npm run build
   ```
 
-## 🚢 Deployment
+### Deploy to Cloudflare Pages (Recommended)
 
-### Deploy to Vercel (Recommended)
+1. **Build locally**:
+   ```bash
+   npm run build:pages
+   ```
 
-The easiest way to deploy is using the Vercel Platform:
+2. **Deploy**:
+   ```bash
+   npm run pages:deploy
+   ```
 
-1. Push your code to GitHub.
-2. Connect your repository to Vercel.
-3. Vercel will automatically detect Next.js and deploy.
-
-### Manual Deployment
-
-```bash
-npm run build
-npm run start
-```
+**Important**: In the Cloudflare Pages dashboard, set the **Build command** to `npm run build:pages` and the **Build output directory** to `.vercel/output/static`.
 
 ## 🔒 Security
 
