@@ -88,17 +88,20 @@ We maintain high code quality through linting and build validation.
 
 ### Deploy to Cloudflare Pages (Recommended)
 
-1. **Build locally**:
+Cloudflare Pages works best with Git integration.
+
+1. **Dashboard Setup**:
+   - In the Cloudflare Pages dashboard, connect your repository.
+   - Set the **Build command** to `npm run build:pages`.
+   - Set the **Build output directory** to `.vercel/output/static`.
+   - Add the **Environment Variable**: `NODE_VERSION: 18` (or higher).
+
+2. **Manual CLI (Alternative)**:
+   If you prefer manual deployment, run:
    ```bash
    npm run build:pages
+   npx wrangler pages deploy .vercel/output/static
    ```
-
-2. **Deploy**:
-   ```bash
-   npm run pages:deploy
-   ```
-
-**Important**: In the Cloudflare Pages dashboard, set the **Build command** to `npm run build:pages` and the **Build output directory** to `.vercel/output/static`.
 
 ## 🔒 Security
 
