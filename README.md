@@ -10,7 +10,7 @@ Premium engine for transforming images into beautiful, colored ASCII art across 
 - **Premium Web UI**: Minimalist, glassmorphic design built with Next.js and Tailwind CSS.
 - **Terminal Integration**: native support via `curl | bash` for macOS, Linux, and Windows.
 - **24-bit TrueColor**: Accurate color reproduction for both web and terminal outputs.
-- **Enterprise-Grade Security**: Strict image parsing using `sharp` to prevent RCE and malicious file execution.
+- **Enterprise-Grade Security**: Strict image parsing using `jimp` to prevent RCE and malicious file execution.
 - **Performance Optimized**: Server-side processing with efficient data streaming.
 
 ## 🛠 Prerequisites
@@ -97,7 +97,9 @@ Cloudflare Pages works best with Git integration.
    - Add the **Environment Variable**: `NODE_VERSION: 18` (or higher).
 
 2. **Manual CLI (Alternative)**:
+
    If you prefer manual deployment, run:
+
    ```bash
    npm run build:pages
    npx wrangler pages deploy .vercel/output/static
