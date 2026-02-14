@@ -36,9 +36,3 @@ jobs:
 
       - name: Build project
         run: npm run build
-        
-      - name: Build & Deploy Worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_API_TOKEN }} 
