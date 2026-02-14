@@ -105,6 +105,13 @@ Cloudflare Pages works best with Git integration.
    npx wrangler pages deploy .vercel/output/static
    ```
 
+3. **GitHub Actions (Automated)**:
+
+   Deployments are automatically triggered on every push to `main`. To enable this, add the following secrets to your GitHub repository (**Settings > Secrets and variables > Actions**):
+
+   - `CLOUDFLARE_API_TOKEN`: Your Cloudflare API Token (with Page Edit permissions).
+   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare Account ID.
+
 ## 🔒 Security
 
 - **Strict Validation**: Files are processed as buffers and parsed by `jimp`. Only standard image headers are accepted.
