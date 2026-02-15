@@ -2,20 +2,29 @@
 
 ![ASCII Draw Demo](public/demo.png)
 
-Premium engine for transforming images into beautiful, colored ASCII art across Web and Terminal.
- It provides a stunning web interface and a seamless terminal integration for creating colorized ASCII masterpieces.
+Premium engine for transforming images into beautiful, colored ASCII art across Web and Terminal. It provides a stunning web interface and a seamless terminal integration for creating colorized ASCII masterpieces.
 
 ## 🌟 Features
 
-- **Premium Web UI**: Minimalist, glassmorphic design built with Next.js and Tailwind CSS.
-- **Terminal Integration**: native support via `curl | bash` for macOS, Linux, and Windows.
+- **Premium Web UI**: Minimalist, glassmorphic design built with Next.js 16 and Tailwind CSS.
+- **Terminal Integration**: Native support via `curl | bash` for macOS, Linux, and Windows.
 - **24-bit TrueColor**: Accurate color reproduction for both web and terminal outputs.
 - **Enterprise-Grade Security**: Strict image parsing using `jimp` to prevent RCE and malicious file execution.
-- **Performance Optimized**: Server-side processing with efficient data streaming.
+- **Performance Optimized**: Server-side Node.js processing with efficient data streaming.
+
+## 🛠 Tech Stack
+
+| Technology | Version |
+| --- | --- |
+| Next.js | 16.1.6 |
+| React | 19.2.4 |
+| Tailwind CSS | 3.x |
+| jimp | 1.6.x |
+| TypeScript | 5.x |
 
 ## 🛠 Prerequisites
 
-- **Node.js**: `v18.17.0` or higher (tested on Node 25).
+- **Node.js**: `v20` or higher.
 - **Package Manager**: `npm` or `yarn`.
 
 ## 🚀 Getting Started
@@ -25,7 +34,7 @@ Premium engine for transforming images into beautiful, colored ASCII art across 
 Clone the repository and install dependencies:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/burmeseitman/asciidraw.git
 cd asciidraw
 npm install
 ```
@@ -86,31 +95,26 @@ We maintain high code quality through linting and build validation.
   npm run build
   ```
 
-### Deploy to Cloudflare Pages (Recommended)
+## 🚀 Deployment (Vercel)
 
-Cloudflare Pages works best with Git integration.
+This project is deployed on [Vercel](https://vercel.com). Vercel auto-deploys on every push to `main` via its Git integration — no GitHub Actions workflow needed.
 
-1. **Dashboard Setup**:
-   - In the Cloudflare Pages dashboard, connect your repository.
-   - Set the **Build command** to `npm run build:pages`.
-   - Set the **Build output directory** to `.vercel/output/static`.
-   - Add the **Environment Variable**: `NODE_VERSION: 18` (or higher).
+### Setup
 
-2. **Manual CLI (Alternative)**:
+1. Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repository.
+2. Vercel will auto-detect Next.js and configure the build settings.
+3. Click **Deploy** — that's it!
 
-   If you prefer manual deployment, run:
+Every subsequent push to `main` will trigger an automatic deployment.
 
-   ```bash
-   npm run build:pages
-   npx wrangler pages deploy .vercel/output/static
-   ```
+### Available Scripts
 
-3. **GitHub Actions (Automated)**:
-
-   Deployments are automatically triggered on every push to `main`. To enable this, add the following secrets to your GitHub repository (**Settings > Secrets and variables > Actions**):
-
-   - `CLOUDFLARE_API_TOKEN`: Your Cloudflare API Token (with Page Edit permissions).
-   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare Account ID.
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start dev server with Turbopack |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
 ## 🔒 Security
 
