@@ -24,6 +24,11 @@ jobs:
       - name: Build project
         run: npm run build:pages
 
+      - name: Debug Secret
+        run: echo "Token exists"
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}        
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
