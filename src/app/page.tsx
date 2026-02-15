@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Upload, Terminal, Image as ImageIcon, Zap, Shield, Sparkles } from 'lucide-react';
+import { Upload, Terminal, Image as ImageIcon, Zap, Shield, Sparkles, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -77,6 +77,15 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl font-bold tracking-tighter glow-text flex-nowrap">ASCII DRAW</h1>
             </div>
             <ThemeToggle />
+            <a 
+              href="https://github.com/burmeseitman/asciidraw" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 glass rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
+              title="View on GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
           </div>
           <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xs">
             Premium ASCII Masterpieces.
